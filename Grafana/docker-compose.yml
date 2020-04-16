@@ -3,7 +3,7 @@ services:
   steeltoe-app:
     container_name: steeltoe-app
     build:
-      context: ./src
+      context: <ABSOLUTE_PATH_TO_PROJECT>
     ports:
     - 80:80
   zipkin:

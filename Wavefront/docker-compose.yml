@@ -3,9 +3,9 @@ services:
   steeltoe-app:
     container_name: steeltoe-app
     build:
-      context: ./src
+      context: <ABSOLUTE_PATH_TO_PROJECT>
     ports:
-    - 8080:8080
+    - 80:80
   wavefront-proxy:
     image: wavefronthq/proxy:latest
     container_name: wavefront-proxy
