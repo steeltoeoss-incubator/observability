@@ -18,7 +18,7 @@ services:
     - WAVEFRONT_URL=https://longboard.wavefront.com/api/
     - WAVEFRONT_TOKEN=<YOUR_API_TOKEN>
     - JAVA_HEAP_USAGE=512m
-    - WAVEFRONT_PROXY_ARGS="--traceZipkinListenerPorts 9411"
+    - WAVEFRONT_PROXY_ARGS=--traceZipkinListenerPorts 9411
   telegraf:
     image: telegraf:latest
     container_name: telegraf
@@ -26,6 +26,7 @@ services:
     - --config=/etc/telegraf/telegraf.conf
     volumes:
     - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
     - steeltoe-app
     - wavefront-proxy
