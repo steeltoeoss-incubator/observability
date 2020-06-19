@@ -1,0 +1,776 @@
+{
+    "name": "Steeltoe-distributed-tracing",
+    "url": "Steeltoe-distributed-tracing",
+    "eventFilterType": "BYCHART",
+    "displayDescription": false,
+    "displaySectionTableOfContents": true,
+    "displayQueryParameters": true,
+    "sections": [
+      {
+        "name": "Tracing Charts Section",
+        "rows": [
+          {
+            "charts": [
+              {
+                "chartSettings": {
+                  "type": "markdown-widget",
+                  "plainMarkdownContent": "|  |  |  |  |  |  |  |\n| --- | --- | --- | --- | --- | --- | --- |\n| ![Steeltoe](https://avatars2.githubusercontent.com/u/15900715?s=200&v=4) | | | Welcome to Wavefront's [ Distributed Tracing of Steeltoe Applications](https://steeltoe.io/docs/2/tracing/distributed-tracing \"_blank\")! <br/><br/> Use this dashboard to view service details and to examine RED metrics, alerts on RED metrics, and trace histograms. <br/> You can identify potential hot spots, and then drill down to the Traces browser. <br/><br/> If the charts in this dashboard show No Data, check that your application sends trace data to Wavefront. <br/> See [Instrumenting Your Application](https://docs.wavefront.com/tracing_instrumenting_frameworks.html \"_blank\"). ",
+                  "autoColumnTags": false,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "",
+                "units": "Units",
+                "summarization": "MEAN",
+                "base": 0,
+                "chartAttributes": {
+                  "dashboardLayout": {
+                    "x": 0,
+                    "y": 0,
+                    "w": 12,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "A",
+                    "query": "",
+                    "disabled": false,
+                    "secondaryAxis": false,
+                    "scatterPlotSource": "Y",
+                    "querybuilderSerialization": "{\"_v\":1,\"filters\":[[],\"and\"],\"functions\":[],\"metric\":\"ts(undefined)\"}",
+                    "querybuilderEnabled": true,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false
+              }
+            ],
+            "heightFactor": 100
+          },
+          {
+            "charts": [
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "lineType": "linear",
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "type": "line",
+                  "y1UnitAutoscaling": false,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "y0UnitAutoscaling": false,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Request Rate",
+                "units": "Requests / min",
+                "summarization": "MEAN",
+                "base": 1,
+                "chartAttributes": {
+                  "dashboardLayout": {
+                    "x": 0,
+                    "y": 5,
+                    "w": 4,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "invocation-rate",
+                    "query": "counter_sum(align(60s, ts(tracing.derived.*.invocation.count, ${tracing_all_filters})) ${view}) * 60",
+                    "secondaryAxis": false,
+                    "scatterPlotSource": "Y",
+                    "querybuilderEnabled": false,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false,
+                "description": ""
+              },
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "lineType": "linear",
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "type": "line",
+                  "y1UnitAutoscaling": false,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "y0UnitAutoscaling": false,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Error Rate",
+                "units": "Errors / min",
+                "summarization": "MEAN",
+                "base": 1,
+                "chartAttributes": {
+                  "dashboardLayout": {
+                    "x": 4,
+                    "y": 5,
+                    "w": 4,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "error-rate",
+                    "query": "default(0, counter_sum(align(60s, ts(tracing.derived.*.error.count, ${tracing_all_filters})) ${view}) * 60)",
+                    "scatterPlotSource": "Y",
+                    "querybuilderEnabled": false,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false,
+                "description": ""
+              },
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "lineType": "linear",
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "type": "line",
+                  "y1UnitAutoscaling": false,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "y0UnitAutoscaling": true,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Duration (P95)",
+                "units": "us",
+                "summarization": "MEAN",
+                "base": 1,
+                "chartAttributes": {
+                  "dashboardLayout": {
+                    "x": 8,
+                    "y": 5,
+                    "w": 4,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "duration(p95)",
+                    "query": "percentile(95, merge(hs(tracing.derived.*.duration.micros.m, ${tracing_all_filters}) ${view}))",
+                    "secondaryAxis": false,
+                    "scatterPlotSource": "Y",
+                    "querybuilderEnabled": false,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false
+              }
+            ],
+            "heightFactor": 100
+          },
+          {
+            "charts": [
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "stackType": "bars",
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "showRawValues": false,
+                  "lineType": "linear",
+                  "showHosts": true,
+                  "groupBySource": false,
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "sortValuesDescending": true,
+                  "type": "stacked-area",
+                  "y1UnitAutoscaling": false,
+                  "showLabels": true,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Requests vs Errors",
+                "summarization": "MEAN",
+                "base": 0,
+                "chartAttributes": {
+                  "dashboardLayout": {
+                    "x": 0,
+                    "y": 10,
+                    "w": 4,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "Requests",
+                    "query": "counter_sum(align(60s, ts(tracing.derived.*.invocation.count, ${tracing_all_filters})) * 60)",
+                    "disabled": false,
+                    "secondaryAxis": false,
+                    "querybuilderEnabled": false,
+                    "sourceDescription": "",
+                    "sourceColor": "#49AFD9"
+                  },
+                  {
+                    "name": "Errors",
+                    "query": "counter_sum(align(60s, ts(tracing.derived.*.error.count, ${tracing_all_filters})) * 60)",
+                    "disabled": false,
+                    "secondaryAxis": false,
+                    "querybuilderEnabled": false,
+                    "sourceDescription": "",
+                    "sourceColor": "#F52F22"
+                  }
+                ],
+                "noDefaultEvents": false
+              },
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "lineType": "linear",
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "type": "histogram",
+                  "y1UnitAutoscaling": false,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "y0UnitAutoscaling": true,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Request Latency",
+                "summarization": "MEAN",
+                "base": 0,
+                "chartAttributes": {
+                  "histogram": {
+                    "gradientColors": [
+                      "#FFE860",
+                      "#D28F00"
+                    ]
+                  },
+                  "dashboardLayout": {
+                    "x": 4,
+                    "y": 10,
+                    "w": 8,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "",
+                    "query": "hs(tracing.derived.*.duration.micros.m, ${tracing_all_filters})",
+                    "disabled": false,
+                    "secondaryAxis": false,
+                    "querybuilderEnabled": false,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false
+              }
+            ],
+            "heightFactor": 100
+          },
+          {
+            "charts": [
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "showRawValues": false,
+                  "lineType": "linear",
+                  "showHosts": true,
+                  "groupBySource": false,
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "sortValuesDescending": true,
+                  "type": "top-k",
+                  "y1UnitAutoscaling": false,
+                  "showLabels": true,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "y0UnitAutoscaling": false,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Top Requests",
+                "units": "",
+                "summarization": "MEAN",
+                "base": 1,
+                "chartAttributes": {
+                  "dashboardLinks": {
+                    "*": {
+                      "destination": "/tracing/search",
+                      "targetFormat": "tracing",
+                      "variables": {
+                        "application": "application",
+                        "service": "service",
+                        "cluster": "cluster",
+                        "shard": "shard"
+                      },
+                      "tags": {
+                        "operation": "operationName"
+                      }
+                    }
+                  },
+                  "decimalPrecision": 2,
+                  "topK": {
+                    "labelBy": [
+                      "operationName"
+                    ],
+                    "groupBy": [
+                      "operationName"
+                    ],
+                    "labelHeader": "Requests",
+                    "valueHeader": "(sum)"
+                  },
+                  "colorMap": {
+                    "colors": [
+                      "#49AFD9"
+                    ]
+                  },
+                  "dashboardLayout": {
+                    "x": 0,
+                    "y": 15,
+                    "w": 4,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "operation-invocation-rate",
+                    "query": "round(at('end', msum(1vw, rawsum(align(1m, sum, ratediff(ts(tracing.derived.*.invocation.count, ${tracing_all_filters}))), operationName))))",
+                    "secondaryAxis": false,
+                    "scatterPlotSource": "Y",
+                    "querybuilderEnabled": false,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false,
+                "description": ""
+              },
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "showRawValues": false,
+                  "lineType": "linear",
+                  "showHosts": true,
+                  "groupBySource": false,
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "sortValuesDescending": true,
+                  "type": "top-k",
+                  "y1UnitAutoscaling": false,
+                  "showLabels": true,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "y0UnitAutoscaling": false,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Top Failed Requests",
+                "units": "",
+                "summarization": "MEAN",
+                "base": 1,
+                "chartAttributes": {
+                  "dashboardLinks": {
+                    "*": {
+                      "destination": "/tracing/search",
+                      "targetFormat": "tracing",
+                      "variables": {
+                        "application": "application",
+                        "service": "service",
+                        "cluster": "cluster",
+                        "shard": "shard"
+                      },
+                      "tags": {
+                        "operation": "operationName"
+                      },
+                      "constants": {
+                        "tags": "error=true"
+                      }
+                    }
+                  },
+                  "decimalPrecision": 2,
+                  "topK": {
+                    "labelBy": [
+                      "operationName"
+                    ],
+                    "groupBy": [
+                      "operationName"
+                    ],
+                    "labelHeader": "Requests",
+                    "valueHeader": "(sum)"
+                  },
+                  "colorMap": {
+                    "colors": [
+                      "#F52F22"
+                    ]
+                  },
+                  "dashboardLayout": {
+                    "x": 4,
+                    "y": 15,
+                    "w": 4,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "operation-fail-rate",
+                    "query": "round(at('end', default(0, msum(1vw, rawsum(align(1m, sum, ratediff(ts(tracing.derived.*.error.count, ${tracing_all_filters}))), operationName)))))",
+                    "secondaryAxis": false,
+                    "scatterPlotSource": "Y",
+                    "querybuilderEnabled": false,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false,
+                "description": ""
+              },
+              {
+                "chartSettings": {
+                  "y1ScaleSIBy1024": false,
+                  "fixedLegendEnabled": false,
+                  "fixedLegendFilterField": "CURRENT",
+                  "y0ScaleSIBy1024": false,
+                  "fixedLegendFilterLimit": 5,
+                  "fixedLegendPosition": "RIGHT",
+                  "customTags": [],
+                  "showRawValues": false,
+                  "lineType": "linear",
+                  "showHosts": true,
+                  "groupBySource": false,
+                  "windowing": "full",
+                  "fixedLegendFilterSort": "TOP",
+                  "y1Units": "",
+                  "sortValuesDescending": true,
+                  "type": "top-k",
+                  "y1UnitAutoscaling": false,
+                  "showLabels": true,
+                  "tagMode": "all",
+                  "fixedLegendUseRawStats": false,
+                  "y0UnitAutoscaling": true,
+                  "fixedLegendDisplayStats": [
+                    "CURRENT"
+                  ],
+                  "autoColumnTags": false,
+                  "numTags": 4,
+                  "sparklineDisplayColor": null,
+                  "sparklineLineColor": null,
+                  "sparklineFillColor": null
+                },
+                "includeObsoleteMetrics": false,
+                "interpolatePoints": false,
+                "name": "Slowest Requests",
+                "units": "ms",
+                "summarization": "MEAN",
+                "base": 1,
+                "chartAttributes": {
+                  "dashboardLinks": {
+                    "*": {
+                      "destination": "/tracing/search",
+                      "targetFormat": "tracing",
+                      "variables": {
+                        "application": "application",
+                        "service": "service",
+                        "cluster": "cluster",
+                        "shard": "shard"
+                      },
+                      "tags": {
+                        "operation": "operationName"
+                      },
+                      "constants": {
+                        "sortBy": "LONGEST_FIRST"
+                      }
+                    }
+                  },
+                  "decimalPrecision": 2,
+                  "topK": {
+                    "labelBy": [
+                      "operationName"
+                    ],
+                    "groupBy": [
+                      "operationName"
+                    ],
+                    "labelHeader": "Requests",
+                    "valueHeader": "(avg)"
+                  },
+                  "colorMap": {
+                    "colors": [
+                      "#FAC400"
+                    ]
+                  },
+                  "dashboardLayout": {
+                    "x": 8,
+                    "y": 15,
+                    "w": 4,
+                    "h": 5
+                  }
+                },
+                "sources": [
+                  {
+                    "name": "operation-duration",
+                    "query": "round(at('end', msum(1vw, rawsum(align(1m, sum, ratediff(ts(tracing.derived.*.total_time.millis.count, ${tracing_all_filters}))), operationName)))) / round(at('end', msum(1vw, rawsum(align(1m, sum, ratediff(ts(tracing.derived.*.invocation.count, ${tracing_all_filters}))), operationName))))",
+                    "secondaryAxis": false,
+                    "scatterPlotSource": "Y",
+                    "querybuilderEnabled": false,
+                    "sourceDescription": ""
+                  }
+                ],
+                "noDefaultEvents": false,
+                "description": ""
+              }
+            ],
+            "heightFactor": 100
+          }
+        ]
+      },
+      {
+        "name": "New Section",
+        "rows": []
+      }
+    ],
+    "parameterDetails": {
+      "cluster": {
+        "parameterType": "DYNAMIC",
+        "tagKey": "cluster",
+        "queryValue": "collect(sum(ts(~component.heartbeat, application=\"${application}\" and service=\"${service}\"), cluster), taggify(1, \"cluster\", \"*\"))",
+        "order": 3,
+        "defaultValue": "Label",
+        "hideFromView": false,
+        "value": "*",
+        "label": "cluster",
+        "dynamicFieldType": "TAG_KEY",
+        "valuesToReadableStrings": {
+          "Label": "*",
+          "Label_2": "none"
+        },
+        "selectedLabel": "Label"
+      },
+      "view": {
+        "parameterType": "LIST",
+        "valueOrdering": [
+          "Summarized View",
+          "Detailed View"
+        ],
+        "order": 6,
+        "defaultValue": "Detailed View",
+        "hideFromView": false,
+        "label": "view",
+        "valuesToReadableStrings": {
+          "Summarized View": "",
+          "Detailed View": ", sources, pointTags"
+        }
+      },
+      "tracing_all_filters": {
+        "parameterType": "LIST",
+        "valueOrdering": [
+          "default"
+        ],
+        "order": 7,
+        "defaultValue": "default",
+        "hideFromView": true,
+        "label": "filters",
+        "valuesToReadableStrings": {
+          "default": "application=\"${application}\" and service=\"${service}\" and cluster=\"${cluster}\" and shard=\"${shard}\" and source=\"${source}\""
+        }
+      },
+      "application": {
+        "parameterType": "DYNAMIC",
+        "tagKey": "application",
+        "queryValue": "collect(sum(ts(~component.heartbeat), application), taggify(1, \"application\", \"\"))",
+        "order": 1,
+        "defaultValue": "Label_23",
+        "hideFromView": false,
+        "value": "Zipkin",
+        "label": "application",
+        "dynamicFieldType": "TAG_KEY",
+        "valuesToReadableStrings": {
+          "Label_2": "Blockchain",
+          "Label_3": "CpHub",
+          "Label_30": "wavefrontcheck",
+          "Label_4": "DIMA",
+          "Label_20": "THISDEMO",
+          "Label_5": "Dekt TO-DOs",
+          "Label_10": "MyVMwareCommonTracingService",
+          "Label_21": "Tesseract",
+          "Label_6": "DemoServices",
+          "Label_11": "ReproCentral",
+          "Label_22": "VMWare-CDTR",
+          "Label_7": "Fortune Demo",
+          "Label_12": "ScreeningService",
+          "Label_23": "Zipkin",
+          "Label_8": "Jaeger",
+          "Label_13": "Shepherd",
+          "Label_24": "dekt-petclinic",
+          "Label_9": "LocalScreeningService",
+          "Label_14": "Skyline",
+          "Label_25": "demo-dib",
+          "Label_15": "SkylineApp",
+          "Label_26": "mw-admin-tool",
+          "Label_16": "SkylineIT",
+          "Label_27": "pet-clinic-k8s",
+          "Label_17": "Support",
+          "Label_28": "pet-clinic-microservices-dev",
+          "Label_18": "Support Hub",
+          "Label_29": "unnamed_application",
+          "Label_19": "SupportHub",
+          "Label": "*"
+        },
+        "selectedLabel": "Label_23"
+      },
+      "service": {
+        "parameterType": "DYNAMIC",
+        "tagKey": "service",
+        "queryValue": "collect(sum(ts(~component.heartbeat, application=\"${application}\"), service), taggify(1, \"service\", \"\"))",
+        "order": 2,
+        "defaultValue": "Label_4",
+        "hideFromView": false,
+        "value": "wavefront_demo_app",
+        "label": "service",
+        "dynamicFieldType": "TAG_KEY",
+        "valuesToReadableStrings": {
+          "Label": "*",
+          "Label_2": "gateway-service",
+          "Label_3": "organization-service",
+          "Label_4": "wavefront_demo_app"
+        },
+        "selectedLabel": "Label_4"
+      },
+      "shard": {
+        "parameterType": "DYNAMIC",
+        "tagKey": "shard",
+        "queryValue": "collect(sum(ts(~component.heartbeat, application=\"${application}\" and service=\"${service}\" and cluster=\"${cluster}\"), shard), taggify(1, \"shard\", \"*\"))",
+        "order": 4,
+        "defaultValue": "Label",
+        "hideFromView": false,
+        "value": "*",
+        "label": "shard",
+        "dynamicFieldType": "TAG_KEY",
+        "valuesToReadableStrings": {
+          "Label": "*",
+          "Label_2": "none"
+        },
+        "selectedLabel": "Label"
+      },
+      "source": {
+        "parameterType": "DYNAMIC",
+        "queryValue": "collect(sum(ts(~component.heartbeat, application=\"${application}\" and service=\"${service}\" and cluster=\"${cluster}\" and shard=\"${shard}\"), sources), aliasSource(1, \"*\"))",
+        "order": 5,
+        "defaultValue": "Label_2",
+        "hideFromView": false,
+        "value": "zipkin",
+        "label": "source",
+        "dynamicFieldType": "SOURCE",
+        "valuesToReadableStrings": {
+          "Label": "*",
+          "Label_2": "zipkin"
+        },
+        "selectedLabel": "Label_2"
+      }
+    }
+  }
