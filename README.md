@@ -1,3 +1,5 @@
+# observability is no longer actively maintained by VMware, Inc.
+
 # Steeltoe App Observability
 
 This is a collection of different ways to monitor a running app using Steeltoe Cloud Management and Distributed Tracing. Each folder is named after the platform used for observability. Within, you will find the needed configurations and docker assets. While the examples are docker driven and aimed at running locally, you should be able to also use platforms like Kubernetes with ease.
